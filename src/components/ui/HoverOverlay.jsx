@@ -16,7 +16,7 @@ function GenreList({ genres }) {
   );
 }
 
-export default function HoverOverlay({ filmData, mode }) {
+export default function HoverOverlay({ filmData, mode, onDelete, onEdit, onAddToList }) {
   const progressPercent = (filmData.progress.progressSeconds / filmData.durationSeconds) * 100;
 
   return (
@@ -32,9 +32,31 @@ export default function HoverOverlay({ filmData, mode }) {
           <button className='w-[55px] aspect-square rounded-full grid place-items-center border border-outline-border cursor-pointer'>
             <i className="ri-check-line text-[30px] leading-0 text-text-light-primary"></i>
           </button>
-          <button className='ml-auto w-[55px] aspect-square rounded-full grid place-items-center border border-outline-border cursor-pointer'>
+          <div className='ml-auto w-[55px] aspect-square rounded-full grid place-items-center border border-outline-border cursor-pointer relative z-99 group/buttons'>
             <i className="ri-arrow-down-s-line text-[30px] leading-0 text-white"></i>
-          </button>
+            { mode === 'card' && <div className='absolute top-full right-0 bg-paper-background rounded-sm flex flex-col rounded-sm opacity-0 translate-y-1 transition-all duration-300 ease-out group-hover/buttons:opacity-100 group-hover/buttons:translate-y-0'>
+              <button
+                onClick={() => onAddToList(filmData.id)}
+                className='text-base text-white text-nowrap p-2 flex items-center gap-2 cursor-pointer transition-all ease-out duration-300 hover:bg-page-header-background group/add-list-button'
+              >
+                <i className="ri-star-line group-hover/add-list-button:text-yellow-500 group-hover/add-list-button:hidden"></i>
+                <i className="ri-star-fill hidden group-hover/add-list-button:text-yellow-500 group-hover/add-list-button:inline-block"></i>
+                Tambah ke daftar saya
+              </button>
+              <button
+                onClick={() => onEdit(filmData.id)}
+                className='text-base text-white text-nowrap p-2 flex items-center gap-2 cursor-pointer transition-all ease-out duration-300 hover:bg-page-header-background'
+              >
+                <i className="ri-pencil-line"></i> Edit
+              </button>
+              <button
+                onClick={() => onDelete(filmData.id)}
+                className='text-base text-white text-nowrap p-2 flex items-center gap-2 cursor-pointer transition-all ease-out duration-300 bg-error hover:bg-error-pressed'
+              >
+                <i className="ri-delete-bin-line"></i> Hapus
+              </button>
+            </div> }
+          </div>
         </div>
         
         { mode === 'card' && 

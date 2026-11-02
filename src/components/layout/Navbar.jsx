@@ -1,14 +1,18 @@
+import { NavLink } from 'react-router';
+
 import logo from '../../assets/images/logo.png';
 import logoSmall from '../../assets/images/logo-small.png';
-import avatar from '../../assets/images/avatar.webp'
+import avatar from '../../assets/images/avatar.webp';
 
 export default function Navbar() {
   return (
     <nav className="bg-page-header-background py-[25px] px-20 max-sm:py-5 max-sm:px-5 flex justify-between items-center">
       <ul className="flex items-center gap-20 max-sm:gap-3 bg-red">
         <li className='leading-0'>
-          <img src={logo} alt="Logo" className='w-[103.55px] max-sm:hidden' />
-          <img src={logoSmall} alt="Logo" className='w-5 hidden max-sm:block' />
+          <NavLink to="/" end>
+            <img src={logo} alt="Logo" className='w-[103.55px] max-sm:hidden' />
+            <img src={logoSmall} alt="Logo" className='w-5 hidden max-sm:block' />
+          </NavLink>
         </li>
         <li>
           <a href="#" className='text-body-large-medium max-sm:text-caption-2-medium text-white'>Series</a>
@@ -17,7 +21,9 @@ export default function Navbar() {
           <a href="#" className='text-body-large-medium max-sm:text-caption-2-medium text-white'>Film</a>
         </li>
         <li>
-          <a href="#" className='text-body-large-medium max-sm:text-caption-2-medium text-white'>Daftar Saya</a>
+          <NavLink to="/mylist" end>
+            <span className='text-body-large-medium max-sm:text-caption-2-medium text-white'>Daftar Saya</span>
+          </NavLink>
         </li>
       </ul>
 

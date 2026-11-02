@@ -19,7 +19,7 @@ export default function Poster({ filmData }) {
   return (
     <div
       style={{ backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0)), url("${getImage(filmData.posterImage)}")` }}
-      className="flex-1 aspect-3/5 max-sm:aspect-9/14 max-sm:flex-none max-sm:w-[26vw] rounded-md bg-center bg-cover snap-start relative group"
+      className="w-full aspect-3/5 max-sm:aspect-9/16 rounded-md bg-center bg-cover relative group"
     >
       { filmData.badge && <Badge badge={filmData.badge} /> }
       <HoverOverlay filmData={filmData} mode='poster' />

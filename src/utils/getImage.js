@@ -3,4 +3,11 @@ const images = import.meta.glob('/src/assets/images/**/*.{png,jpg,jpeg,webp}', {
   import: 'default',
 });
 
-export const getImage = (path) => images[`/src/assets/images/${path}`];
+// URL dari internet (http/https), data URL, atau blob URL
+const isExternal = (path) => /^(https?:)?\/\//i.test(path) || /^(data|blob):/i.test(path);
+
+export const getImage = (path) => {
+  if (!path) return undefined;
+  if (isExternal(path)) return path; // gambar dari internet dipakai apa adanya
+  return images[`/src/assets/images/${path}`]; // gambar lokal dari folder assets
+};

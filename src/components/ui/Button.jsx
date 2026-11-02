@@ -14,7 +14,7 @@ const VARIANTS = {
   },
   shadow: {
     primary: "bg-primary-200 border border-primary-200 text-white",
-    secondary: "bg-input-field-bg border-0 text-body-background",
+    secondary: "bg-transparent border-0 text-body-background",
     disabled:
       "bg-greyscale-300 border border-greyscale-300 text-text-dark-disabled",
   },
