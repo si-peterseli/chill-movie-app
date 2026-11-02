@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import Navbar from "../components/layout/Navbar";
 import { getImage } from '../utils/getImage';
+import Footer from "../components/layout/Footer";
 
 function MyListPoster({ filmData, onRemove }) {
   return (
@@ -79,9 +80,10 @@ export default function MyList() {
   return (
     <>
       <Navbar />
-      <div className="p-20">
-        <h3 className="text-h3 text-white">Daftar Saya</h3>
-        <div className="mt-[30px] grid grid-cols-6 gap-x-4 gap-y-8">
+
+      <div className="p-20 max-sm:p-5 max-sm:pb-10">
+        <h3 className="text-h3 max-sm:text-h5 text-white">Daftar Saya</h3>
+        <div className="mt-[30px] max-sm:mt-4 grid grid-cols-6 max-sm:grid-cols-3 gap-x-4 gap-y-8 max-sm:gap-y-4">
           { myListFilmDatas.map(data => <MyListPoster
               key={data.id}
               filmData={data}
@@ -89,6 +91,8 @@ export default function MyList() {
             />) }
         </div>
       </div>
+
+      <Footer className="mt-0 max-sm:mt-0" />
     </>
   );
 }

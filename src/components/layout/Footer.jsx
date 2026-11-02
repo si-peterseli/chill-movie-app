@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router';
 
 import logo from '../../assets/images/logo.png';
+import { cn } from '../../utils/cn';
 import { useState } from 'react';
 
-export default function Footer() {
+export default function Footer({ className="" }) {
   const [genreMenuOpen, setGenreMenuOpen] = useState(false);
   const [supportMenuOpen, setSupportMenuOpen] = useState(true);
 
@@ -11,7 +12,7 @@ export default function Footer() {
   let supportGridRows = supportMenuOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]';
 
   return (
-    <footer className="mt-20 max-sm:mt-7 border border-t-outline-border py-15 px-20 max-sm:p-5 flex justify-between items-center max-sm:flex-col max-sm:justify-start max-sm:items-start">
+    <footer className={cn('mt-20 max-sm:mt-7 border border-t-outline-border py-15 px-20 max-sm:p-5 flex justify-between items-center max-sm:flex-col max-sm:justify-start max-sm:items-start', className)}>
       <div className="flex flex-col gap-6.5 max-sm:gap-4">
         <img
           src={logo} alt="Chill Logo"
