@@ -1,104 +1,38 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import Navbar from "../components/layout/Navbar";
 import Hero from "../components/layout/Hero";
 import HeroSection from "../components/layout/HeroSection";
 import Footer from "../components/layout/Footer";
 import FormOverlay from "../components/ui/FormOverlay";
+import { useFilmStore } from "../store/useFilmStore";
 
-import { getInitialFilmDatas } from "../data/initialDatas";
+export default function HomePage() {
+  const filmDatas = useFilmStore((s) => s.filmDatas);
+  const loading = useFilmStore((s) => s.loading);
+  const error = useFilmStore((s) => s.error);
+  const formOverlayActive = useFilmStore((s) => s.formOverlayActive);
+  const editFilmId = useFilmStore((s) => s.editFilmId);
 
-export default function App() {
-  const [filmDatas, setFilmDatas] = useState([]);
-  const [formOverlayActive, setFormOverlayActive] = useState(false);
-  const [editFilmId, setEditFilmId] = useState(null);
+  const fetchFilms = useFilmStore((s) => s.fetchFilms);
+  const submitFilm = useFilmStore((s) => s.submitFilm);
+  const removeFromContinueWatching = useFilmStore((s) => s.removeFromContinueWatching);
+  const addToList = useFilmStore((s) => s.addToList);
+  const showEmptyForm = useFilmStore((s) => s.showEmptyForm);
+  const editFormOverlay = useFilmStore((s) => s.editFormOverlay);
+  const closeForm = useFilmStore((s) => s.closeForm);
 
   useEffect(() => {
-  let ignore = false;
+    fetchFilms();
+  }, [fetchFilms]);
 
-  async function load() {
-    try {
-      let data;
-      const stored = localStorage.getItem('film-datas');
+  // Data turunan tetap dihitung di komponen
+  const formInitialData = filmDatas.find((d) => d.id === editFilmId) ?? null;
 
-      if (stored) {
-        data = JSON.parse(stored);
-      } else {
-        data = await getInitialFilmDatas();
-        localStorage.setItem('film-datas', JSON.stringify(data));
-      }
-
-      if (!ignore) setFilmDatas(data);
-    } catch (err) {
-      if (!ignore) console.log(err);
-    }
-  }
-
-  load();
-
-  return () => {
-    ignore = true;
-  };
-}, []);
-
-  const formSubmit = ({ movie, isEdit, editId }) => {
-    let updatedData;
-    if (isEdit) {
-      setFilmDatas(prev => {
-        updatedData =  prev.map(data =>
-          data.id === editId ? { ...movie } : data
-        );
-
-        return updatedData;
-      });
-    } else {
-      setFilmDatas(prev => {
-        updatedData =  [...prev, movie];
-
-        return updatedData;
-      });
-    }
-
-    localStorage.setItem('film-datas', JSON.stringify(updatedData));
-  }
-
-  const removeFilmFromContinueWatching = id => {
-    setFilmDatas(prev =>
-      prev.map(data => 
-        data.id === id
-          ? { ...data, fyp: data.fyp.filter(tag => tag !== 'continue-watching') }
-          : data
-      )
-    )
-  };
-
-  const editFormOverlay = id => {
-    setEditFilmId(id);
-    setFormOverlayActive(true);
-  };
-
-  const showEmptyForm = () => {
-    setEditFilmId(null);
-    setFormOverlayActive(true);
-  };
-
-  const addToList = id => {
-    setFilmDatas(prev => {
-      const updatedData = prev.map(data =>
-        data.id === id ? {...data, myList: true} : data
-      );
-
-      localStorage.setItem('film-datas', JSON.stringify(updatedData));
-      return updatedData;
-    });
-  };
-
-  const formInitialData = filmDatas.find(data => data.id === editFilmId) ?? null;
-
-  const continueWatchingFilmDatas = filmDatas.filter(data => data.fyp.includes('continue-watching'));
-  const topRatingFilmDatas = filmDatas.filter(data => data.fyp.includes('top-rating'));
-  const filmTrendingFilmDatas = filmDatas.filter(data => data.fyp.includes('film-trending'));
-  const newReleaseFilmDatas = filmDatas.filter(data => data.fyp.includes('new-release'));
+  const continueWatchingFilmDatas = filmDatas.filter((d) => d.tags.includes('continue-watching'));
+  const topRatingFilmDatas = filmDatas.filter((d) => d.tags.includes('top-rating'));
+  const filmTrendingFilmDatas = filmDatas.filter((d) => d.tags.includes('film-trending'));
+  const newReleaseFilmDatas = filmDatas.filter((d) => d.tags.includes('new-release'));
 
   return (
     <>
@@ -106,7 +40,7 @@ export default function App() {
       <Hero />
       <HeroSection title='Melanjutkan Tonton Film' mode='card' filmDatas={continueWatchingFilmDatas}
         onAddFilmClick={showEmptyForm}
-        onDelete={removeFilmFromContinueWatching}
+        onDelete={removeFromContinueWatching}
         onEdit={editFormOverlay}
         onAddToList={addToList}
       />
@@ -116,8 +50,8 @@ export default function App() {
       <Footer />
       <FormOverlay
         overlayActive={formOverlayActive}
-        onClose={() => setFormOverlayActive(false)}
-        onSubmit={formSubmit}
+        onClose={closeForm}
+        onSubmit={submitFilm}
         initialData={formInitialData}
       />
     </>

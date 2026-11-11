@@ -11,16 +11,16 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
+    "tags": [
         "continue-watching"
     ],
-    "badge": null,
+    "badges": [],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 2754
     },
     "id": "2e2b758a-7188-44b5-8b75-01aa8fba9cdd",
-	"myList": true,
+	"inMyList": true,
   },
   {
     "title": "Blue Lock",
@@ -34,16 +34,16 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
+    "tags": [
         "continue-watching"
     ],
-    "badge": null,
+    "badges": [],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 4590
     },
     "id": "3b2b9fe1-f146-4955-9b99-c952b4045af0",
-	"myList": false,
+	"inMyList": false,
   },
   {
     "title": "The Batman",
@@ -57,16 +57,16 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
+    "tags": [
         "continue-watching",
     ],
-    "badge": null,
+    "badges": [],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 2754
     },
     "id": "e9f3c26e-33c0-4cc7-bdb5-daa503a5cc15",
-	"myList": false,
+	"inMyList": false,
   },
   {
     "title": "A Man Called Otto",
@@ -80,17 +80,17 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
+    "tags": [
         "continue-watching",
         "film-trending"
     ],
-    "badge": "top-10",
+    "badges": ["top-10"],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 4590
     },
     "id": "595dfaae-9e5b-4bab-a7a3-753a7de27f76",
-	"myList": true,
+	"inMyList": true,
   },
   {
     "title": "Suzune",
@@ -104,16 +104,16 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
-        "top-rating"
+    "tags": [
+        "top-rating",
     ],
-    "badge": "new-episode",
+    "badges": ["new-episode"],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 2754
     },
     "id": "a70bd906-9dea-4c01-a074-ea4c71b7d1c6",
-	"myList": false,
+	"inMyList": false,
   },
   {
     "title": "Jurrasic World",
@@ -127,16 +127,16 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
+    "tags": [
         "top-rating"
     ],
-    "badge": null,
+    "badges": [],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 2754
     },
     "id": "65cbe245-472f-45b2-a43f-02311a26302b",
-	"myList": false,
+	"inMyList": false,
   },
   {
     "title": "Sonic 2",
@@ -150,16 +150,16 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
+    "tags": [
         "top-rating"
     ],
-    "badge": null,
+    "badges": [],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 2754
     },
     "id": "c1448d76-b23c-41ad-8aa0-9f4ef077044f",
-	"myList": false,
+	"inMyList": false,
   },
   {
     "title": "All Of Us Are Dead",
@@ -173,17 +173,17 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
+    "tags": [
         "top-rating",
         "new-release"
     ],
-    "badge": "new-episode",
+    "badges": ["new-episode"],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 2754
     },
     "id": "f75b10c7-1ca1-4b26-bc8a-98250039c883",
-	"myList": false,
+	"inMyList": false,
   },
   {
     "title": "Big Hero 6",
@@ -197,17 +197,17 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
+    "tags": [
         "top-rating",
         "new-release"
     ],
-    "badge": null,
+    "badges": [],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 2754
     },
     "id": "2c6cb6b6-cbc9-41d7-a55f-ac59605d4df4",
-	"myList": false,
+	"inMyList": false,
   },
   {
     "title": "The Tomorrow War",
@@ -221,16 +221,16 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
+    "tags": [
         "film-trending"
     ],
-    "badge": "top-10",
+    "badges": ["top-10"],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 2754
     },
     "id": "5714419f-1829-42e7-ae41-e47c9d298d09",
-	"myList": false,
+	"inMyList": false,
   },
   {
     "title": "Quantumania",
@@ -244,16 +244,16 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
+    "tags": [
         "film-trending"
     ],
-    "badge": "top-10",
+    "badges": ["top-10"],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 2754
     },
     "id": "c8e840f6-bb98-4dce-a66f-4d9398066437",
-	"myList": false,
+	"inMyList": false,
   },
   {
     "title": "Guardian Of The Galaxy",
@@ -267,16 +267,16 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
+    "tags": [
         "film-trending"
     ],
-    "badge": "top-10",
+    "badges": ["top-10"],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 2754
     },
     "id": "afb81e40-0b43-4545-959e-34f6c7cc1e18",
-	"myList": false,
+	"inMyList": false,
   },
   {
     "title": "The Little Mermaid",
@@ -290,17 +290,17 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
+    "tags": [
         "film-trending",
         "new-release"
     ],
-    "badge": "top-10",
+    "badges": ["top-10"],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 2754
     },
     "id": "9ffea2c7-0af6-4b9c-9429-4085f659bd86",
-	"myList": false,
+	"inMyList": false,
   },
   {
     "title": "Missing",
@@ -314,16 +314,16 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
+    "tags": [
         "new-release"
     ],
-    "badge": null,
+    "badges": [],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 2754
     },
     "id": "494ba52f-767f-4f0e-a59e-81cc1eb6b824",
-	"myList": false,
+	"inMyList": false,
   },
   {
     "title": "Duty After School",
@@ -337,16 +337,16 @@ const initialFilmDatas = [
         "Fantasi"
     ],
     "ageRating": "13+",
-    "fyp": [
+    "tags": [
         "new-release"
     ],
-    "badge": "new-episode",
+    "badges": ["new-episode"],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 2754
     },
     "id": "373520a3-b178-4a96-b904-962dc8b1fa9f",
-	"myList": false,
+	"inMyList": false,
   },
   {
     "title": "Movie 1",
@@ -360,16 +360,16 @@ const initialFilmDatas = [
         "Genre 3"
     ],
     "ageRating": "17+",
-    "fyp": [
+    "tags": [
         "continue-watching"
     ],
-    "badge": null,
+    "badges": [],
     "progress": {
         "episode": "Episode 1",
         "progressSeconds": 1000
     },
     "id": "4b5f0baa-8771-4693-bc9c-60cc8c1391df",
-	"myList": false,
+	"inMyList": false,
   }
 ];
 

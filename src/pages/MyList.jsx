@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import Navbar from "../components/layout/Navbar";
 import { getImage } from '../utils/getImage';
 import Footer from "../components/layout/Footer";
+import { useFilmStore } from "../store/useFilmStore";
 
 function MyListPoster({ filmData, onRemove }) {
   return (
@@ -42,40 +43,18 @@ function MyListPoster({ filmData, onRemove }) {
 }
 
 export default function MyList() {
-  const [filmDatas, setFilmDatas] = useState([]);
+  const filmDatas = useFilmStore((s) => s.filmDatas);
+  const loading = useFilmStore((s) => s.loading);
+  const error = useFilmStore((s) => s.error);
+  const fetchFilms = useFilmStore((s) => s.fetchFilms);
+  const removeFromList = useFilmStore((s) => s.removeFromList);
 
   useEffect(() => {
-    let ignore = false;
+    // Jika user membuka /my-list langsung (refresh), store masih kosong
+    if (filmDatas.length === 0) fetchFilms();
+  }, [filmDatas.length, fetchFilms]);
 
-    async function load() {
-      try {
-        const data = JSON.parse(localStorage.getItem('film-datas'));
-        if (!ignore) setFilmDatas(data);
-      } catch (err) {
-        if (!ignore) console.log(err);
-      }
-    }
-
-    load();
-
-    return () => {
-      ignore = true;
-    }
-  }, []);
-  
-  const myListFilmDatas = filmDatas.filter(data => data.myList);
-
-  const removeFilmFromList = id => {
-    setFilmDatas(prev => {
-      const updatedDatas = prev.map(data =>
-        data.id === id ? {...data, myList: false} : data
-      );
-
-      localStorage.setItem('film-datas', JSON.stringify(updatedDatas));
-
-      return updatedDatas;
-    });
-  };
+  const inMyListFilmDatas = filmDatas.filter((data) => data.inMyList);
 
   return (
     <>
@@ -83,12 +62,18 @@ export default function MyList() {
 
       <div className="p-20 max-sm:p-5 max-sm:pb-10">
         <h3 className="text-h3 max-sm:text-h5 text-white">Daftar Saya</h3>
+
+        {loading && <p className="mt-6 text-white">Memuat...</p>}
+        {error && <p className="mt-6 text-white">Terjadi kesalahan: {error}</p>}
+
         <div className="mt-[30px] max-sm:mt-4 grid grid-cols-6 max-sm:grid-cols-3 gap-x-4 gap-y-8 max-sm:gap-y-4">
-          { myListFilmDatas.map(data => <MyListPoster
+          {inMyListFilmDatas.map((data) => (
+            <MyListPoster
               key={data.id}
               filmData={data}
-              onRemove={removeFilmFromList}
-            />) }
+              onRemove={removeFromList}
+            />
+          ))}
         </div>
       </div>
 

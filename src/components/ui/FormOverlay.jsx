@@ -176,8 +176,8 @@ export default function FormOverlay({
         .map((g) => g.trim())
         .filter(Boolean),
       ageRating: values.ageRating,
-      fyp: initialData?.fyp ?? ["continue-watching"],
-      badge: initialData?.badge ?? null,
+      tags: initialData?.tags ?? ["continue-watching"],
+      badges: initialData?.badges ?? [],
       progress: {
         episode: `Episode ${values.episode === "" ? 1 : Number(values.episode)}`,
         progressSeconds: toSeconds(
@@ -186,6 +186,7 @@ export default function FormOverlay({
           values.progressSeconds
         ),
       },
+      inMyList: false
     };
 
     setValues(EMPTY_FORM);
