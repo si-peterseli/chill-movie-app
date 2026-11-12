@@ -25,7 +25,7 @@ function Badge({ type }) {
   return <span className={config.className}>{config.content}</span>;
 }
 
-export default function Poster({ filmData }) {
+export default function Poster({ filmData, onEdit, onAddToList }) {
   return (
     <div
       style={{ backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, .4), rgba(0, 0, 0, 0)), url("${getImage(filmData.posterImage)}")` }}
@@ -34,7 +34,7 @@ export default function Poster({ filmData }) {
       {filmData.badges?.map((type) => (
         <Badge key={type} type={type} />
       ))}
-      <HoverOverlay filmData={filmData} mode="poster" />
+      <HoverOverlay filmData={filmData} mode="poster" onEdit={onEdit} onAddToList={onAddToList} />
     </div>
   );
 }

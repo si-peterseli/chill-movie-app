@@ -44,9 +44,18 @@ export default function HomePage() {
         onEdit={editFormOverlay}
         onAddToList={addToList}
       />
-      <HeroSection title='Top Rating Film dan Series Hari ini' mode='poster' filmDatas={topRatingFilmDatas} />
-      <HeroSection title='Film Trending' mode='poster' filmDatas={filmTrendingFilmDatas} />
-      <HeroSection title='Rilis Baru' mode='poster' filmDatas={newReleaseFilmDatas} />
+      <HeroSection title='Top Rating Film dan Series Hari ini' mode='poster' filmDatas={topRatingFilmDatas}
+        onEdit={editFormOverlay}
+        onAddToList={addToList}
+      />
+      <HeroSection title='Film Trending' mode='poster' filmDatas={filmTrendingFilmDatas}
+        onEdit={editFormOverlay}
+        onAddToList={addToList}
+      />
+      <HeroSection title='Rilis Baru' mode='poster' filmDatas={newReleaseFilmDatas}
+        onEdit={editFormOverlay}
+        onAddToList={addToList}
+      />
       <Footer />
       <FormOverlay
         overlayActive={formOverlayActive}

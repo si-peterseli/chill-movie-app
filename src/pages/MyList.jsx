@@ -13,10 +13,10 @@ function MyListPoster({ filmData, onRemove }) {
       }}
       className="aspect-9/14 bg-center bg-cover rounded-md overflow-hidden relative group"
     >
-      { filmData.badge === 'new-episode' &&
+      { filmData.badges.includes('new-episode') &&
         <span className="py-1 px-2.5 bg-primary-300 rounded-full text-body-small-bold text-white absolute top-4 left-4">Episode Baru</span>
       }
-      { filmData.badge === 'top-10' &&
+      { filmData.badges.includes('top-10') &&
         <span className="p-1 rounded-bl-sm rounded-tr-sm bg-error-pressed text-body-small-regular text-white text-center absolute right-0 top-0">
           Top<br />10
         </span>

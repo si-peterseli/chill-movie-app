@@ -34,7 +34,7 @@ export default function HoverOverlay({ filmData, mode, onDelete, onEdit, onAddTo
           </button>
           <div className='ml-auto w-[55px] aspect-square rounded-full grid place-items-center border border-outline-border cursor-pointer relative z-99 group/buttons'>
             <i className="ri-arrow-down-s-line text-[30px] leading-0 text-white"></i>
-            { mode === 'card' && <div className='absolute top-full right-0 bg-paper-background rounded-sm flex flex-col rounded-sm opacity-0 translate-y-1 transition-all duration-300 ease-out group-hover/buttons:opacity-100 group-hover/buttons:translate-y-0'>
+            <div className='absolute top-full right-0 bg-paper-background rounded-sm flex flex-col rounded-sm opacity-0 translate-y-1 transition-all duration-300 ease-out group-hover/buttons:opacity-100 group-hover/buttons:translate-y-0'>
               <button
                 onClick={() => onAddToList(filmData.id)}
                 className='text-base text-white text-nowrap p-2 flex items-center gap-2 cursor-pointer transition-all ease-out duration-300 hover:bg-page-header-background group/add-list-button'
@@ -49,13 +49,13 @@ export default function HoverOverlay({ filmData, mode, onDelete, onEdit, onAddTo
               >
                 <i className="ri-pencil-line"></i> Edit
               </button>
-              <button
+              { mode === 'card' && <button
                 onClick={() => onDelete(filmData.id)}
                 className='text-base text-white text-nowrap p-2 flex items-center gap-2 cursor-pointer transition-all ease-out duration-300 bg-error hover:bg-error-pressed'
               >
                 <i className="ri-delete-bin-line"></i> Hapus
-              </button>
-            </div> }
+              </button> }
+            </div>
           </div>
         </div>
         

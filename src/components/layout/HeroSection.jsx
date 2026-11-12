@@ -92,7 +92,7 @@ export default function HeroSection({
               {mode === "card" ? (
                 <Card filmData={data} onDelete={onDelete} onEdit={onEdit} onAddToList={onAddToList} />
               ) : (
-                <Poster filmData={data} />
+                <Poster filmData={data} onEdit={onEdit} onAddToList={onAddToList} />
               )}
             </SwiperSlide>
           ))}
