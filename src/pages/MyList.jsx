@@ -1,9 +1,16 @@
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Navbar from "../components/layout/Navbar";
 import { getImage } from '../utils/getImage';
 import Footer from "../components/layout/Footer";
-import { useFilmStore } from "../store/useFilmStore";
+import {
+  fetchFilms,
+  removeFromList,
+  selectFilmDatas,
+  selectFilmsLoading,
+  selectFilmsError,
+} from "../features/films/filmSlice";
 
 function MyListPoster({ filmData, onRemove }) {
   return (
@@ -43,16 +50,17 @@ function MyListPoster({ filmData, onRemove }) {
 }
 
 export default function MyList() {
-  const filmDatas = useFilmStore((s) => s.filmDatas);
-  const loading = useFilmStore((s) => s.loading);
-  const error = useFilmStore((s) => s.error);
-  const fetchFilms = useFilmStore((s) => s.fetchFilms);
-  const removeFromList = useFilmStore((s) => s.removeFromList);
+  const dispatch = useDispatch();
+
+  const filmDatas = useSelector(selectFilmDatas);
+  const loading = useSelector(selectFilmsLoading);
+  const error = useSelector(selectFilmsError);
 
   useEffect(() => {
-    // Jika user membuka /my-list langsung (refresh), store masih kosong
-    if (filmDatas.length === 0) fetchFilms();
-  }, [filmDatas.length, fetchFilms]);
+    if (filmDatas.length === 0) dispatch(fetchFilms());
+  }, [filmDatas.length, dispatch]);
+
+  const handleRemove = (id) => dispatch(removeFromList(id));
 
   const inMyListFilmDatas = filmDatas.filter((data) => data.inMyList);
 
@@ -71,7 +79,7 @@ export default function MyList() {
             <MyListPoster
               key={data.id}
               filmData={data}
-              onRemove={removeFromList}
+              onRemove={handleRemove}
             />
           ))}
         </div>

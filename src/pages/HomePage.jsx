@@ -1,32 +1,42 @@
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Navbar from "../components/layout/Navbar";
 import Hero from "../components/layout/Hero";
 import HeroSection from "../components/layout/HeroSection";
 import Footer from "../components/layout/Footer";
 import FormOverlay from "../components/ui/FormOverlay";
-import { useFilmStore } from "../store/useFilmStore";
+import {
+  fetchFilms,
+  submitFilm,
+  removeFromContinueWatching,
+  addToList,
+  showEmptyForm,
+  editFormOverlay,
+  closeForm,
+  selectFilmDatas,
+  selectFormOverlayActive,
+  selectEditFilmId,
+} from "../features/films/filmSlice";
 
 export default function HomePage() {
-  const filmDatas = useFilmStore((s) => s.filmDatas);
-  const loading = useFilmStore((s) => s.loading);
-  const error = useFilmStore((s) => s.error);
-  const formOverlayActive = useFilmStore((s) => s.formOverlayActive);
-  const editFilmId = useFilmStore((s) => s.editFilmId);
+  const dispatch = useDispatch();
 
-  const fetchFilms = useFilmStore((s) => s.fetchFilms);
-  const submitFilm = useFilmStore((s) => s.submitFilm);
-  const removeFromContinueWatching = useFilmStore((s) => s.removeFromContinueWatching);
-  const addToList = useFilmStore((s) => s.addToList);
-  const showEmptyForm = useFilmStore((s) => s.showEmptyForm);
-  const editFormOverlay = useFilmStore((s) => s.editFormOverlay);
-  const closeForm = useFilmStore((s) => s.closeForm);
+  const filmDatas = useSelector(selectFilmDatas);
+  const formOverlayActive = useSelector(selectFormOverlayActive);
+  const editFilmId = useSelector(selectEditFilmId);
 
   useEffect(() => {
-    fetchFilms();
-  }, [fetchFilms]);
+    dispatch(fetchFilms());
+  }, [dispatch]);
 
-  // Data turunan tetap dihitung di komponen
+  const handleAddFilmClick = () => dispatch(showEmptyForm());
+  const handleEdit = (id) => dispatch(editFormOverlay(id));
+  const handleDelete = (id) => dispatch(removeFromContinueWatching(id));
+  const handleAddToList = (id) => dispatch(addToList(id));
+  const handleCloseForm = () => dispatch(closeForm());
+  const handleSubmit = (payload) => dispatch(submitFilm(payload));
+
   const formInitialData = filmDatas.find((d) => d.id === editFilmId) ?? null;
 
   const continueWatchingFilmDatas = filmDatas.filter((d) => d.tags.includes('continue-watching'));
@@ -39,28 +49,28 @@ export default function HomePage() {
       <Navbar />
       <Hero />
       <HeroSection title='Melanjutkan Tonton Film' mode='card' filmDatas={continueWatchingFilmDatas}
-        onAddFilmClick={showEmptyForm}
-        onDelete={removeFromContinueWatching}
-        onEdit={editFormOverlay}
-        onAddToList={addToList}
+        onAddFilmClick={handleAddFilmClick}
+        onDelete={handleDelete}
+        onEdit={handleEdit}
+        onAddToList={handleAddToList}
       />
       <HeroSection title='Top Rating Film dan Series Hari ini' mode='poster' filmDatas={topRatingFilmDatas}
-        onEdit={editFormOverlay}
-        onAddToList={addToList}
+        onEdit={handleEdit}
+        onAddToList={handleAddToList}
       />
       <HeroSection title='Film Trending' mode='poster' filmDatas={filmTrendingFilmDatas}
-        onEdit={editFormOverlay}
-        onAddToList={addToList}
+        onEdit={handleEdit}
+        onAddToList={handleAddToList}
       />
       <HeroSection title='Rilis Baru' mode='poster' filmDatas={newReleaseFilmDatas}
-        onEdit={editFormOverlay}
-        onAddToList={addToList}
+        onEdit={handleEdit}
+        onAddToList={handleAddToList}
       />
       <Footer />
       <FormOverlay
         overlayActive={formOverlayActive}
-        onClose={closeForm}
-        onSubmit={submitFilm}
+        onClose={handleCloseForm}
+        onSubmit={handleSubmit}
         initialData={formInitialData}
       />
     </>
